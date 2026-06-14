@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>อิทธิพลของระบบการเมืองการปกครองต่อชีวิตประจำวัน</title>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --navy: #1B2D5B;
+    --navy-dark: #111E3E;
+    --gold: #D4A017;
+    --gold-light: #F5CC5A;
+    --slate: #F0F3FA;
+    --text: #1C1C2E;
+    --muted: #5A6480;
+    --white: #FFFFFF;
+    --accent: #3A5BB5;
+  }
+
+  body {
+    font-family: 'Sarabun', sans-serif;
+    background: #0E1629;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    overflow: hidden;
+  }
+
+  .presentation {
+    width: 900px;
+    max-width: 98vw;
+    position: relative;
+  }
+
+  /* ===== SLIDES ===== */
+  .slide {
+    display: none;
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 520px;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+    animation: fadeIn 0.35s ease;
+  }
+  .slide.active { display: flex; flex-direction: column; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ===== TITLE SLIDE ===== */
+  .slide-title {
+    background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, #2A4080 100%);
+    min-height: 520px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 60px 60px;
+    position: relative;
+  }
+
+  .slide-title::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 6px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .title-badge {
+    display: inline-block;
+    background: rgba(212,160,23,0.18);
+    border: 1px solid var(--gold);
+    color: var(--gold-light);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    padding: 6px 18px;
+    border-radius: 30px;
+    margin-bottom: 30px;
+  }
+
+  .slide-title h1 {
+    color: var(--white);
+    font-size: 34px;
+    font-weight: 800;
+    line-height: 1.4;
+    margin-bottom: 20px;
+    max-width: 680px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .slide-title h1 span {
+    color: var(--gold-light);
+  }
+
+  .title-sub {
+    color: rgba(255,255,255,0.6);
+    font-size: 15px;
+    margin-top: 10px;
+  }
+
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-top: 36px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .topic-chip {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 10px 12px;
+    color: rgba(255,255,255,0.85);
+    font-size: 13px;
+    font-weight: 400;
+    text-align: left;
+  }
+
+  .topic-chip .chip-num {
+    display: block;
+    color: var(--gold-light);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 3px;
+  }
+
+  /* ===== CONTENT SLIDES ===== */
+  .slide-content {
+    flex: 1;
+  }
+
+  .slide-header {
+    background: var(--navy);
+    padding: 28px 40px 24px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .slide-header::after {
+    content: '';
+    position: absolute;
+    right: -20px; top: -20px;
+    width: 150px; height: 150px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .slide-header::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--gold), transparent);
+  }
+
+  .slide-number {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--gold-light);
+    margin-bottom: 6px;
+  }
+
+  .slide-header h2 {
+    color: var(--white);
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.3;
+    position: relative;
+    z-index: 1;
+  }
+
+  .slide-header .icon {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 48px;
+    opacity: 0.2;
+  }
+
+  /* ===== BODY ===== */
+  .slide-body {
+    padding: 32px 40px 28px;
+    background: var(--white);
+    flex: 1;
+  }
+
+  .point {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .point-dot {
+    flex-shrink: 0;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--gold);
+    margin-top: 8px;
+  }
+
+  .point p {
+    color: var(--text);
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 1.65;
+  }
+
+  .point p strong {
+    color: var(--navy);
+    font-weight: 700;
+  }
+
+  .compare-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 6px;
+  }
+
+  .compare-box {
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+
+  .compare-box.demo {
+    background: #EFF6FF;
+    border-left: 4px solid #3B82F6;
+  }
+
+  .compare-box.auth {
+    background: #FFF4F0;
+    border-left: 4px solid #EF4444;
+  }
+
+  .compare-box h4 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+  }
+
+  .compare-box.demo h4 { color: #1D4ED8; }
+  .compare-box.auth h4 { color: #B91C1C; }
+
+  .compare-box ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .compare-box ul li {
+    font-size: 14px;
+    color: var(--text);
+    line-height: 1.6;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+
+  .compare-box ul li::before {
+    content: '›';
+    position: absolute;
+    left: 0;
+    color: var(--muted);
+    font-weight: 700;
+  }
+
+  .event-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-top: 6px;
+  }
+
+  .event-card {
+    background: var(--slate);
+    border-radius: 10px;
+    padding: 16px 18px;
+    border-left: 4px solid var(--accent);
+  }
+
+  .event-card .year {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    margin-bottom: 4px;
+  }
+
+  .event-card h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 5px;
+  }
+
+  .event-card p {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.5;
+  }
+
+  /* ===== NAV ===== */
+  .nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 20px;
+    padding: 0 10px;
+  }
+
+  .nav-btn {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 20px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s;
+  }
+
+  .nav-btn:hover {
+    background: rgba(255,255,255,0.2);
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .nav-btn:disabled {
+    opacity: 0.25;
+    cursor: default;
+  }
+
+  .dots {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.25);
+    cursor: pointer;
+    transition: all 0.2s;
+    border: none;
+  }
+
+  .dot.active {
+    background: var(--gold-light);
+    width: 22px;
+    border-radius: 4px;
+  }
+
+  .slide-counter {
+    color: rgba(255,255,255,0.5);
+    font-size: 13px;
+    font-family: 'Sarabun', sans-serif;
+    min-width: 54px;
+    text-align: center;
+  }
+
+  /* keyboard hint */
+  .hint {
+    text-align: center;
+    color: rgba(255,255,255,0.25);
+    font-size: 12px;
+    margin-top: 10px;
+    font-family: 'Sarabun', sans-serif;
+  }
+</style>
+</head>
+<body>
+
+<div class="presentation">
+
+  <!-- SLIDE 0: TITLE -->
+  <div class="slide slide-title active">
+    <div class="title-badge">หัวข้อที่ 8</div>
+    <h1>อิทธิพลของ<span>ระบบการเมืองการปกครอง</span><br>ต่อชีวิตประจำวัน</h1>
+    <p class="title-sub">วิชาสังคมศึกษา | การเมืองการปกครอง</p>
+    <div class="topics-grid">
+      <div class="topic-chip"><span class="chip-num">01</span>ผลต่อการศึกษา</div>
+      <div class="topic-chip"><span class="chip-num">02</span>ผลต่อเศรษฐกิจ</div>
+      <div class="topic-chip"><span class="chip-num">03</span>ผลต่อสิทธิและเสรีภาพ</div>
+      <div class="topic-chip"><span class="chip-num">04</span>การมีส่วนร่วมทางการเมือง</div>
+      <div class="topic-chip"><span class="chip-num">05</span>การรวมกลุ่มและแสดงความคิดเห็น</div>
+      <div class="topic-chip"><span class="chip-num">06</span>ตัวอย่างเหตุการณ์ร่วมสมัย</div>
+    </div>
+  </div>
+
+  <!-- SLIDE 1: การศึกษา -->
+  <div class="slide slide-content">
+    <div class="slide-header">
+      <div class="slide-number">01 / 06</div>
+      <h2>ผลต่อการศึกษา</h2>
+      <div class="icon">🎓</div>
+    </div>
+    <div class="slide-body">
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>รัฐบาลกำหนดหลักสูตรและนโยบายการศึกษา</strong> — เนื้อหา วิธีการสอน และงบประมาณล้วนมาจากนโยบายรัฐ</p>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-box demo">
+          <h4>🗳️ ประชาธิปไตย</h4>
+          <ul>
+            <li>ส่งเสริมการคิดวิเคราะห์อย่างอิสระ</li>
+            <li>เสรีภาพทางวิชาการและการค้นคว้า</li>
+            <li>เปิดกว้างต่อความหลากหลายทางความคิด</li>
+          </ul>
+        </div>
+        <div class="compare-box auth">
+          <h4>⚡ เผด็จการ</h4>
+          <ul>
+            <li>ควบคุมและเซ็นเซอร์เนื้อหาวิชา</li>
+            <li>ปลูกฝังอุดมการณ์ผ่านระบบการศึกษา</li>
+            <li>จำกัดการเข้าถึงข้อมูลบางประเภท</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point" style="margin-top:16px">
+        <div class="point-dot"></div>
+        <p>งบประมาณการศึกษาขึ้นอยู่กับ<strong>ลำดับความสำคัญของรัฐบาล</strong> — บางประเทศใช้งบกว่า 20% ของรายจ่ายรัฐเพื่อการศึกษา</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 2: เศรษฐกิจ -->
+  <div class="slide slide-content">
+    <div class="slide-header">
+      <div class="slide-number">02 / 06</div>
+      <h2>ผลต่อเศรษฐกิจ</h2>
+      <div class="icon">💰</div>
+    </div>
+    <div class="slide-body">
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>ระบบการเมืองกำหนดทิศทางเศรษฐกิจ</strong> ไม่ว่าจะเป็นนโยบายภาษี การค้าเสรี หรือการแทรกแซงของรัฐ</p>
+      </div>
+      <div class="compare-grid">
+        <div class="compare-box demo">
+          <h4>🗳️ เสรีนิยม-ประชาธิปไตย</h4>
+          <ul>
+            <li>ตลาดเสรี แข่งขันได้ สร้างนวัตกรรม</li>
+            <li>ดึงดูดนักลงทุนต่างชาติ</li>
+            <li>กระจายความมั่งคั่งผ่านระบบภาษี</li>
+          </ul>
+        </div>
+        <div class="compare-box auth">
+          <h4>⚡ สังคมนิยม / คอมมิวนิสต์</h4>
+          <ul>
+            <li>รัฐควบคุมการผลิตและทรัพยากร</li>
+            <li>กระจายรายได้แบบรวมศูนย์</li>
+            <li>จำกัดการเป็นเจ้าของทรัพย์สินส่วนตัว</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point" style="margin-top:16px">
+        <div class="point-dot"></div>
+        <p><strong>ความมั่นคงทางการเมือง</strong>เป็นปัจจัยสำคัญ — ประเทศที่มีการเมืองไม่มั่นคงมักเผชิญเศรษฐกิจซบเซาและการลงทุนหด</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 3: สิทธิ -->
+  <div class="slide slide-content">
+    <div class="slide-header">
+      <div class="slide-number">03 / 06</div>
+      <h2>ผลต่อสิทธิและเสรีภาพ</h2>
+      <div class="icon">⚖️</div>
+    </div>
+    <div class="slide-body">
+      <div class="point">
+        <div class="point-dot"></div>
+        <p>สิทธิพื้นฐาน เช่น <strong>เสรีภาพในการพูด การชุมนุม การนับถือศาสนา</strong> ขึ้นอยู่กับระบบการปกครองโดยตรง</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p>ระบบ<strong>ประชาธิปไตยตามหลักนิติรัฐ</strong> — คุ้มครองสิทธิมนุษยชนผ่านรัฐธรรมนูญและกระบวนการยุติธรรมที่เป็นอิสระ</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p>ระบบ<strong>เผด็จการ</strong> — ควบคุมสื่อ จำกัดการชุมนุม และอาจมีการจับกุมผู้เห็นต่างทางการเมือง</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>กฎหมายและรัฐธรรมนูญ</strong>เป็นกรอบหลัก — คุณภาพของกฎหมายสะท้อนว่าระบบปกครองให้ความสำคัญกับสิทธิประชาชนเพียงใด</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 4: การมีส่วนร่วม -->
+  <div class="slide slide-content">
+    <div class="slide-header">
+      <div class="slide-number">04 / 06</div>
+      <h2>การมีส่วนร่วมทางการเมืองของประชาชน</h2>
+      <div class="icon">🗳️</div>
+    </div>
+    <div class="slide-body">
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>การเลือกตั้ง</strong> — เครื่องมือพื้นฐานที่สุดในการมีส่วนร่วม ประชาชนเลือกผู้แทนเพื่อกำหนดทิศทางประเทศ</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>การออกเสียงประชามติ</strong> — ตัดสินใจในประเด็นสำคัญระดับชาติ เช่น การแก้ไขรัฐธรรมนูญ</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>การร่วมพรรคการเมือง / กลุ่มผลประโยชน์</strong> — ส่งตัวแทนเข้าสู่ระบบและผลักดันนโยบายที่ต้องการ</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>โซเชียลมีเดียและสื่อออนไลน์</strong> — เปิดช่องทางใหม่ให้ประชาชนแสดงความคิดเห็นและรวมพลังได้รวดเร็วขึ้น</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 5: การรวมกลุ่ม -->
+  <div class="slide slide-content">
+    <div class="slide-header">
+      <div class="slide-number">05 / 06</div>
+      <h2>การรวมกลุ่มและการแสดงความคิดเห็น</h2>
+      <div class="icon">🤝</div>
+    </div>
+    <div class="slide-body">
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>สิทธิในการรวมกลุ่ม</strong> — สมาคม สหภาพแรงงาน และองค์กรภาคประชาสังคม (NGO) เป็นแกนของสังคมประชาธิปไตย</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>เสรีภาพในการชุมนุมอย่างสงบ</strong> — ประชาชนสามารถประท้วงหรือเรียกร้องได้โดยไม่ถูกลงโทษในระบอบประชาธิปไตย</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p><strong>สื่อมวลชนอิสระ</strong> — เป็นเสาหลักของประชาธิปไตย ทำหน้าที่ตรวจสอบอำนาจรัฐและให้ข้อมูลที่เป็นจริงแก่ประชาชน</p>
+      </div>
+      <div class="point">
+        <div class="point-dot"></div>
+        <p>ในระบอบเผด็จการ — <strong>การรวมกลุ่มและการแสดงความคิดเห็นต่อต้านรัฐ</strong>อาจนำไปสู่การจับกุมหรือถูกสั่งห้าม</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLIDE 6: ตัวอย่าง -->
+  <div class="slide slide-content">
+    <div class="slide-header">
+      <div class="slide-number">06 / 06</div>
+      <h2>ตัวอย่างเหตุการณ์ร่วมสมัยที่เกี่ยวข้อง</h2>
+      <div class="icon">🌏</div>
+    </div>
+    <div class="slide-body">
+      <div class="event-cards">
+        <div class="event-card">
+          <div class="year">2562–2563</div>
+          <h4>การประท้วงในฮ่องกง</h4>
+          <p>ประชาชนรวมตัวต่อต้านกฎหมายส่งผู้ร้ายข้ามแดน → แสดงให้เห็นพลังการมีส่วนร่วมของประชาชน</p>
+        </div>
+        <div class="event-card">
+          <div class="year">2565–ปัจจุบัน</div>
+          <h4>สงครามรัสเซีย–ยูเครน</h4>
+          <p>ส่งผลต่อเสรีภาพ เศรษฐกิจ และสิทธิมนุษยชนในวงกว้างทั่วโลก</p>
+        </div>
+        <div class="event-card">
+          <div class="year">2566</div>
+          <h4>การเลือกตั้งไทย</h4>
+          <p>ผลเลือกตั้งและกระบวนการจัดตั้งรัฐบาลสะท้อนระบบการเมืองและการมีส่วนร่วมของประชาชน</p>
+        </div>
+        <div class="event-card">
+          <div class="year">ต่อเนื่อง</div>
+          <h4>การเคลื่อนไหวทางสังคมออนไลน์</h4>
+          <p>#MeToo, Black Lives Matter — ตัวอย่างการรวมกลุ่มผ่านโซเชียลมีเดียที่เปลี่ยนนโยบายได้จริง</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NAV -->
+  <div class="nav-bar">
+    <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)" disabled>‹</button>
+    <div class="dots" id="dots"></div>
+    <span class="slide-counter" id="counter">1 / 7</span>
+    <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">›</button>
+  </div>
+  <p class="hint">กด ← → เพื่อเปลี่ยนสไลด์</p>
+
+</div>
+
+<script>
+  const slides = document.querySelectorAll('.slide');
+  const dotsContainer = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  let current = 0;
+
+  // build dots
+  slides.forEach((_, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i === 0 ? ' active' : '');
+    d.onclick = () => goTo(i);
+    dotsContainer.appendChild(d);
+  });
+
+  function goTo(n) {
+    slides[current].classList.remove('active');
+    dotsContainer.children[current].classList.remove('active');
+    current = n;
+    slides[current].classList.add('active');
+    dotsContainer.children[current].classList.add('active');
+    counter.textContent = (current + 1) + ' / ' + slides.length;
+    prevBtn.disabled = current === 0;
+    nextBtn.disabled = current === slides.length - 1;
+  }
+
+  function changeSlide(dir) {
+    const next = current + dir;
+    if (next >= 0 && next < slides.length) goTo(next);
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') changeSlide(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   changeSlide(-1);
+  });
+</script>
+</body>
+</html>
